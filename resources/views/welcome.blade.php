@@ -16,29 +16,43 @@
         @endif
     </div>
     
+    <div>
+        <form action="{{ route('link.store') }}" method="post">
+            @csrf
+           <div>
+               <p> Запиши сюда любую ссылку </p>
+           </div>
+            <div>
+                <label for="url"></label>
+                <input type="text" 
+                        id="url" 
+                        name="url" 
+                        placeholder="Введите ссылку" 
+                        v-model="urlRaw">
+            </div>
+            <div>
+                <label for="tmp_link"> 5 минутная ссылка </label>
+                <input type="checkbox" name="tmp" id="tmp_link">
+            </div>
+            <div>
+                <button type="submit" name="save_url"> Сохранить </button>
+                <button type="button" v-on:click="slimUrl(urlRaw)"> Уменьшить </button>
+            </div>
+        </form>
+    </div>
     
-    <form action="{{ route('link.store') }}" method="post">
-        @csrf
-       <div>
-           <p> Запиши сюда любую ссылку </p>
-       </div>
+    @if( !empty($tmpLink) )
         <div>
-            <label for="url"></label>
-            <input type="text" 
-                    id="url" 
-                    name="url" 
-                    placeholder="Введите ссылку" 
-                    v-model="urlRaw">
+            <div>
+                <h3> Временные ссылки пользователя </h3>
+            </div>
+            <div>
+                @foreach($tmpLink as $link)
+                    <a href="{{$link}}"> {{ $link }} </a>
+                @endforeach
+            </div>
         </div>
-        <div>
-            <label for="tmp_link"> 5 минутная ссылка </label>
-            <input type="checkbox" name="tmp" id="tmp_link">
-        </div>
-        <div>
-            <button type="submit" name="save_url"> Сохранить </button>
-            <button type="button" v-on:click="slimUrl(urlRaw)"> Уменьшить </button>
-        </div>
-    </form>
+    @endif
 @endsection
 
 <!-- портируем стили и скрипты для текущей страницы -->

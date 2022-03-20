@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\LinksRepository;
 use Illuminate\Http\Request;
 use App\Tasks\CreateNameTask;
+use App\Tasks\LinkTemporaryTask;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $tmpLink = LinkTemporaryTask::run();
+        
+        return view('welcome', compact('tmpLink'));
     }
     
     /**
