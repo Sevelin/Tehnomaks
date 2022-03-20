@@ -11,9 +11,10 @@ class CreateNameTask
     */
     public static function run($array)
     {
-        for($i = 0; $i < count($array); $i++)
+        
+         foreach($array as $key => $item)
         {
-            $array[$i]['name'] = self::cutUrl($array[$i]['name_url']);
+            $array[$key]['name'] = self::cutUrl($item['name_url']);
         }
         
         return $array;
@@ -22,7 +23,7 @@ class CreateNameTask
     /**
     * Обрезаем URL адрес
     */ 
-    private function cutUrl($url)
+    private static function cutUrl($url)
     {
         $name = mb_strtolower($url);
         

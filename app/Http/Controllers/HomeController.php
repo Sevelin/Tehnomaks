@@ -38,6 +38,7 @@ class HomeController extends Controller
     {
         // Получаем список всех доступных ссылок
         $link_list = $links_repositpry -> getLinks();
+        
         //добавляем в массив имя ресурса
         $array = CreateNameTask::run($link_list);
         

@@ -36,5 +36,25 @@ class LinksRepository extends CoreRepository
         return $query -> toArray();
     }
     
+    /**
+    * Получаем список ссылок которые создавал пользователь
+    */
+    public function getUserLinks($id)
+    {
+        $columns = [
+            'name_url',
+            'id',
+            'count_click',
+            'private'
+        ];
+        
+        $quest = $this -> query()
+                    -> select($columns)
+                    -> where(['user_id' => $id])
+                    -> get();
+        
+        return $quest -> toArray();
+    }
+    
     
 }

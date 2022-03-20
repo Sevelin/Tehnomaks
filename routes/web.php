@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LinksController;
+use App\Http\Controllers\UserLinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,6 @@ Route::get('/', [HomeController::class, 'index']) -> name('welcome');
 
 Route::get('/links', [HomeController::class, 'links'])->name('links');
 
-Route::resource('link', LinksController::class);
+Route::resource('/link', LinksController::class);
+Route::get('/userLink', [UserLinkController::class, 'links']) -> name('userLink');
+Route::get('/userChart', [UserLinkController::class, 'chart']) -> name('userChart');

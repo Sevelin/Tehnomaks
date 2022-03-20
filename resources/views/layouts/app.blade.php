@@ -29,7 +29,12 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a href="/links"> Список ссылок </a>
+                <ul class="navbar-nav ms-auto">
+                    <li class="">
+                        <a href="/links"> Список ссылок </a>
+                    </li>
+                </ul>
+                
                 @include('layouts.includes.auth')
                 
             </div>

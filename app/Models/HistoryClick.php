@@ -13,4 +13,20 @@ class HistoryClick extends Model
         'user_id',
         'link_id'
     ];
+    
+    /**
+    * Создаём отношение к пользователю
+    */
+    public function userForHistory()
+    {
+        return $this -> belongsTo(User::class, 'user_id', 'id');
+    }
+    
+    /**
+    * Создаём отношение к ссылке
+    */
+    public function linkForHistory()
+    {
+        return $this -> belongsTo(Links::class, 'link_id', 'id');
+    }
 }

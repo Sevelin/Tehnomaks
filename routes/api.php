@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiLinksController;
+use App\Http\Controllers\Api\ApiUserLinkController;
+use App\Http\Controllers\Api\ApiHistoryClickController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::resource('/actionLink', ApiLinksController::class);
+Route::resource('/actionLinkList', ApiUserLinkController::class);
+Route::resource('/historyClick', ApiHistoryClickController::class);
