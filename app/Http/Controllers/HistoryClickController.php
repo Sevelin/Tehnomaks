@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Links;
+use App\Models\HistoryClick;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Tasks\CreateLinkTask;
-use App\Http\Requests\CreateUrlRequest;
-    
-class LinksController extends Controller
+
+class HistoryClickController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,30 +33,18 @@ class LinksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateUrlRequest $request)
+    public function store(Request $request)
     {
-        $user = (Auth::id() == null) ? 0 : Auth::id();
-        $create = new CreateLinkTask();
-        $add_url = $create -> run($request->all(), $user);
-        
-//        dd( $request->cookie('name_url') );
-//        dd( $_COOKIE['name_url'] );
-//        dd( $_COOKIE );
-        
-        if($add_url){
-            return redirect() -> route('welcome') -> with(['success' => 'URL адрес записан']);
-        }else{
-            return back() -> withErrors(['msg' => 'Ошибка сохранения']) -> withInput();
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Links  $links
+     * @param  \App\Models\HistoryClick  $historyClick
      * @return \Illuminate\Http\Response
      */
-    public function show(Links $links)
+    public function show(HistoryClick $historyClick)
     {
         //
     }
@@ -67,10 +52,10 @@ class LinksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Links  $links
+     * @param  \App\Models\HistoryClick  $historyClick
      * @return \Illuminate\Http\Response
      */
-    public function edit(Links $links)
+    public function edit(HistoryClick $historyClick)
     {
         //
     }
@@ -79,10 +64,10 @@ class LinksController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Links  $links
+     * @param  \App\Models\HistoryClick  $historyClick
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Links $links)
+    public function update(Request $request, HistoryClick $historyClick)
     {
         //
     }
@@ -90,10 +75,10 @@ class LinksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Links  $links
+     * @param  \App\Models\HistoryClick  $historyClick
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Links $links)
+    public function destroy(HistoryClick $historyClick)
     {
         //
     }

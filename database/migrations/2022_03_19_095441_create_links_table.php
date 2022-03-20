@@ -22,6 +22,7 @@ class CreateLinksTable extends Migration
             $table -> integer('static_day') -> default(14);
             $table -> integer('private') -> default(0);
             $table -> timestamps();
+            $table -> softDeletes($column = 'deteled_at', $precission = 0);
         });
     }
 
