@@ -2,6 +2,9 @@
 
 @section('content')
     <div>
+       <div class="text-center">
+           <h3> Сохранённые ссылки </h3>
+       </div>
         @foreach($array as $link)
            <div>
             <a href="{{$link['name_url']}}" 

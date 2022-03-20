@@ -6,6 +6,7 @@ use App\Models\Links;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Tasks\CreateLinkTask;
+use App\Http\Requests\CreateUrlRequest;
     
 class LinksController extends Controller
 {
@@ -35,12 +36,15 @@ class LinksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUrlRequest $request)
     {
         $user = (Auth::id() == null) ? 0 : Auth::id();
         $create = new CreateLinkTask();
-        
         $add_url = $create -> run($request->all(), $user);
+        
+//        dd( $request->cookie('name_url') );
+//        dd( $_COOKIE['name_url'] );
+        dd( $_COOKIE );
         
         if($add_url){
             return redirect() -> route('welcome') -> with(['success' => 'URL адрес записан']);

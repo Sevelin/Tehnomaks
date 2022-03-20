@@ -31,7 +31,7 @@
                     v-model="urlRaw">
         </div>
         <div>
-            <laberl for="tmp_link"> 5 минутная ссылка </laberl>
+            <label for="tmp_link"> 5 минутная ссылка </label>
             <input type="checkbox" name="tmp" id="tmp_link">
         </div>
         <div>
