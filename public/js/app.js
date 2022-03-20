@@ -5330,12 +5330,11 @@ var app = new Vue({
   el: '#app',
   data: {
     urlRaw: '',
-    smollLink: 'qwe'
+    smollLink: ''
   },
   methods: {
     // Уменьшаем URL
     slimUrl: function slimUrl(urlRaw) {
-      //https://www.slimframework.com/docs/v4/start/web-servers.html
       var r_url = urlRaw;
       var url_head = '';
       var url_body = '';
@@ -5352,16 +5351,16 @@ var app = new Vue({
 
       var url_result = url_head + url_body[0];
       url_result = url_body.length >= 2 ? url_result + '/' + url_body[1] : url_result;
-      console.log(url_body);
-      this.smollLink = url_result;
+      var url_link = "<a href='" + urlRaw + "'> " + url_result + " </a>";
+      this.smollLink = url_link;
     },
 
     /**
     * Считаем количество нажатий
     */
     counClickLink: function counClickLink(id) {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default()('' + id).then(function (response) {
-        console.log();
+      return axios__WEBPACK_IMPORTED_MODULE_0___default()('/' + id).then(function (response) {
+        console.log(response.data);
       })["catch"](function (err) {
         console.log('ошибка записи');
       });

@@ -41,7 +41,10 @@
         </form>
     </div>
     
-    <div id="smollLink"> @{{ smollLink }} </div>
+    <div v-if="smollLink.length > 0" > 
+        
+        <span v-html="smollLink"></span> 
+    </div>
     
     @if( !empty($tmpLink) )
         <div>
