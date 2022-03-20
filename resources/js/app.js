@@ -27,6 +27,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import axios from 'axios';
+
 const app = new Vue({
     el: '#app',
     
@@ -66,6 +68,13 @@ const app = new Vue({
         */
         counClickLink(id)
         {
+            return axios('' + id)
+            .then(response => {
+                console.log();
+            })
+            .catch(err => {
+                console.log('ошибка записи');
+            })
             console.log(id);
         }
     }
