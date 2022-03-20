@@ -67,7 +67,12 @@ const app = new Vue({
         */
         counClickLink(id)
         {
-            return axios('/' + id)
+            return axios('api/actionLink/' + id,{
+                method: "PATCH",
+                params:{
+                    count_click: 'count'
+                },
+            })
             .then(response => {
                 console.log(response.data);
             })

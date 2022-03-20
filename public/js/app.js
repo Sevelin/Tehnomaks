@@ -5359,7 +5359,12 @@ var app = new Vue({
     * Считаем количество нажатий
     */
     counClickLink: function counClickLink(id) {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default()('/' + id).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default()('api/actionLink/' + id, {
+        method: "PATCH",
+        params: {
+          count_click: 'count'
+        }
+      }).then(function (response) {
         console.log(response.data);
       })["catch"](function (err) {
         console.log('ошибка записи');

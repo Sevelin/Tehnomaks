@@ -7,11 +7,13 @@
        </div>
         @foreach($array as $link)
            <div>
-            <p
+            <a href="{{$link['name_url']}}" 
+                title="{{$link['name_url']}}"
+                target="_blank"
                 @click="counClickLink({{$link['id']}})"
             > 
                 {{ $link['name'] }} 
-            </p>
+            </a>
             </div>
         @endforeach
     </div>
