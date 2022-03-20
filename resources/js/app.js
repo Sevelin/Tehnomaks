@@ -32,19 +32,34 @@ const app = new Vue({
     
     data:{
         urlRaw: '',
+        smollLink: 'qwe'
     },
     methods:{
         // Уменьшаем URL
         slimUrl(urlRaw){
             //https://www.slimframework.com/docs/v4/start/web-servers.html
-            let url_one = urlRaw.split('.')[0];
-            let url_two = url_one.split('//')[1];
-//                if(url_two.length > 14){
-//                     url_two =  url_two.slice(0, 14);
-//                }
-//                url_two = url_two[0].toUpperCase()+url_two.substring(1);
-                //return url_two;
-            console.log(url_one);
+            let r_url = urlRaw;
+            let url_head = '';
+            let url_body = '';
+            if (r_url.slice(0, 8) == 'https://')
+            {
+                url_head = urlRaw.slice(0, 8);
+                url_body = urlRaw.slice(8).split('/');
+            }else if (r_url.slice(0, 7) == 'http://')
+            {
+                url_head = urlRaw.slice(0, 7);
+                url_body = urlRaw.slice(8).split('/');
+            }else{
+                url_body = urlRaw.split('/');
+            }
+            
+            let url_result = url_head + url_body[0];
+            url_result = (url_body.length >= 2) ?
+                            url_result + '/' + url_body[1] :
+                            url_result;
+            
+            console.log(url_body);
+            this.smollLink = url_result;
         },
         /**
         * Считаем количество нажатий

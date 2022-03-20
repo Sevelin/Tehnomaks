@@ -5324,20 +5324,31 @@ Vue.component('example-component', (__webpack_require__(/*! ./components/Example
 var app = new Vue({
   el: '#app',
   data: {
-    urlRaw: ''
+    urlRaw: '',
+    smollLink: 'qwe'
   },
   methods: {
     // Уменьшаем URL
     slimUrl: function slimUrl(urlRaw) {
       //https://www.slimframework.com/docs/v4/start/web-servers.html
-      var url_one = urlRaw.split('.')[0];
-      var url_two = url_one.split('//')[1]; //                if(url_two.length > 14){
-      //                     url_two =  url_two.slice(0, 14);
-      //                }
-      //                url_two = url_two[0].toUpperCase()+url_two.substring(1);
-      //return url_two;
+      var r_url = urlRaw;
+      var url_head = '';
+      var url_body = '';
 
-      console.log(url_one);
+      if (r_url.slice(0, 8) == 'https://') {
+        url_head = urlRaw.slice(0, 8);
+        url_body = urlRaw.slice(8).split('/');
+      } else if (r_url.slice(0, 7) == 'http://') {
+        url_head = urlRaw.slice(0, 7);
+        url_body = urlRaw.slice(8).split('/');
+      } else {
+        url_body = urlRaw.split('/');
+      }
+
+      var url_result = url_head + url_body[0];
+      url_result = url_body.length >= 2 ? url_result + '/' + url_body[1] : url_result;
+      console.log(url_body);
+      this.smollLink = url_result;
     },
 
     /**

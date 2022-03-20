@@ -41,6 +41,8 @@
         </form>
     </div>
     
+    <div id="smollLink"> @{{ smollLink }} </div>
+    
     @if( !empty($tmpLink) )
         <div>
             <div>
