@@ -1,3 +1,4 @@
+<!-- Шаблон для вывода всех ссылок пользователя -->
 <template>
     <div class="list-links">
        <table class="table">

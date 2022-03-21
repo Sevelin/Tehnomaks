@@ -1,3 +1,4 @@
+<!-- Шаблон для получения данных и последующей передачи их в шаблон с графиком -->
 <template>
     <div class="chart">
         <line-chart :chart-data="chartData" 

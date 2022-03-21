@@ -3,7 +3,7 @@
 @section('content')
     <div>
        <div class="text-center">
-           <h3 class="text-warning"> Сохранённые ссылки </h3>
+           <h3 class="text-warning"> Сохранённые ссылки для всех </h3>
        </div>
         @foreach($array as $link)
            <div class="d-flex flex-column text-center">

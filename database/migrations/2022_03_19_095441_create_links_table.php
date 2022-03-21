@@ -18,11 +18,8 @@ class CreateLinksTable extends Migration
             $table -> integer('user_id') -> default(0);
             $table -> string('name_url') -> nullable();
             $table -> integer('count_click') -> default(0);
-            $table -> integer('healf_time') -> default(0);
-            $table -> integer('static_day') -> default(14);
             $table -> integer('private') -> default(0);
             $table -> timestamps();
-            $table -> softDeletes($column = 'deteled_at', $precission = 0);
         });
     }
 
