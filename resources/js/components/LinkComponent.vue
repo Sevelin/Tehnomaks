@@ -6,7 +6,6 @@
                <th> Ссылка </th>
                <th> Кликов </th>
                <th> Приватность </th>
-               <th> Изменить </th>
                <th> Удалить </th>
            </tr>
            <tr v-for="item in arrayLinks"
@@ -14,10 +13,17 @@
                 <td> {{ item.id }} </td>
                 <td> <a :href="item.name_url"> {{item.name}} </a> </td>
                 <td> {{ item.count_click }} </td>
-                <td> {{ item.private }} </td>
-                <td> <button class="button" 
-                            @click="upLink(item.id)"> 
-                        Изменить 
+                <td> <button v-if="item.private == 0"
+                            class="button" 
+                            name="hide"
+                            @click="upLink(item.id, 'hide')"> 
+                        Лично
+                    </button> 
+                    <button v-else-if="item.private == 1"
+                            class="button"
+                            name="show" 
+                            @click="upLink(item.id, 'show')"> 
+                        Для всех 
                     </button> 
                 </td>
                 <td> <button class="button"
@@ -52,6 +58,7 @@ export default{
         return{
             // сохраняем список ссылок
             arrayLinks: [],
+            private: 0,
         }
     },
     async mounted(){
@@ -85,7 +92,8 @@ export default{
                 method: "DELETE"
             })
             .then(response => {
-                console.log(response.data);
+                this.getLinks(this.id);
+                //console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
@@ -93,12 +101,17 @@ export default{
         },
         
         // ппередаём ссылку на обновление
-        upLink(id)
+        upLink(id, action)
         {
+            let change = (action == 'show') ? 0 : 1;
             return axios('api/actionLinkList/' + id,{
-                method: "PATCH"
+                method: "PATCH",
+                params:{
+                    access: change
+                }
             })
             .then(response => {
+                this.getLinks(this.id);
                 console.log(response.data);
             })
             .catch(error => {

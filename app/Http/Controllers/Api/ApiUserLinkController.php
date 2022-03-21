@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\LinksRepository;
 use App\Tasks\CreateNameTask;
+use App\Tasks\DeletedLinkTask;
+use App\Models\Links;
+
 
 class ApiUserLinkController extends Controller
 {
@@ -78,7 +81,10 @@ class ApiUserLinkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return 'ОБНОВЛЯЕМ';
+        $acce = $request -> access;
+//        return $access;
+        $data = Links::where('id', $id) -> update(['private' => $acce]);
+        return $data;
     }
 
     /**
@@ -89,6 +95,7 @@ class ApiUserLinkController extends Controller
      */
     public function destroy($id)
     {
-        return 'УДАЛЯЕМ';
+        $result = DeletedLinkTask::run($id);
+        return $result;
     }
 }

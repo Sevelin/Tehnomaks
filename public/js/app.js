@@ -5416,6 +5416,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Link',
@@ -5431,7 +5437,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       // сохраняем список ссылок
-      arrayLinks: []
+      arrayLinks: [],
+      "private": 0
     };
   },
   mounted: function mounted() {
@@ -5469,19 +5476,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     // передаём ссылку на удаление
     delLink: function delLink(id) {
+      var _this3 = this;
+
       return axios__WEBPACK_IMPORTED_MODULE_1___default()('api/actionLinkList/' + id, {
         method: "DELETE"
       }).then(function (response) {
-        console.log(response.data);
+        _this3.getLinks(_this3.id); //console.log(response.data);
+
       })["catch"](function (error) {
         console.log(error);
       });
     },
     // ппередаём ссылку на обновление
-    upLink: function upLink(id) {
+    upLink: function upLink(id, action) {
+      var _this4 = this;
+
+      var change = action == 'show' ? 0 : 1;
       return axios__WEBPACK_IMPORTED_MODULE_1___default()('api/actionLinkList/' + id, {
-        method: "PATCH"
+        method: "PATCH",
+        params: {
+          access: change
+        }
       }).then(function (response) {
+        _this4.getLinks(_this4.id);
+
         console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
@@ -66986,21 +67004,40 @@ var render = function () {
             _vm._v(" "),
             _c("td", [_vm._v(" " + _vm._s(item.count_click) + " ")]),
             _vm._v(" "),
-            _c("td", [_vm._v(" " + _vm._s(item.private) + " ")]),
-            _vm._v(" "),
             _c("td", [
-              _c(
-                "button",
-                {
-                  staticClass: "button",
-                  on: {
-                    click: function ($event) {
-                      return _vm.upLink(item.id)
+              item.private == 0
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "button",
+                      attrs: { name: "hide" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.upLink(item.id, "hide")
+                        },
+                      },
                     },
-                  },
-                },
-                [_vm._v(" \n                    Изменить \n                ")]
-              ),
+                    [_vm._v(" \n                    Лично\n                ")]
+                  )
+                : item.private == 1
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "button",
+                      attrs: { name: "show" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.upLink(item.id, "show")
+                        },
+                      },
+                    },
+                    [
+                      _vm._v(
+                        " \n                    Для всех \n                "
+                      ),
+                    ]
+                  )
+                : _vm._e(),
             ]),
             _vm._v(" "),
             _c("td", [
@@ -67037,8 +67074,6 @@ var staticRenderFns = [
       _c("th", [_vm._v(" Кликов ")]),
       _vm._v(" "),
       _c("th", [_vm._v(" Приватность ")]),
-      _vm._v(" "),
-      _c("th", [_vm._v(" Изменить ")]),
       _vm._v(" "),
       _c("th", [_vm._v(" Удалить ")]),
     ])
