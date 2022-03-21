@@ -5422,6 +5422,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Link',
@@ -66987,19 +66999,30 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "list-links" }, [
-    _c(
-      "table",
-      [
-        _vm._m(0),
-        _vm._v(" "),
+    _c("table", { staticClass: "table" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
         _vm._l(_vm.arrayLinks, function (item) {
           return _c("tr", { key: item.id }, [
             _c("td", [_vm._v(" " + _vm._s(item.id) + " ")]),
             _vm._v(" "),
             _c("td", [
-              _c("a", { attrs: { href: item.name_url } }, [
-                _vm._v(" " + _vm._s(item.name) + " "),
-              ]),
+              _c(
+                "a",
+                {
+                  staticClass: "text-decoration-none",
+                  attrs: { href: item.name_url },
+                },
+                [
+                  _vm._v(
+                    " \n                        " +
+                      _vm._s(item.name) +
+                      " \n                    "
+                  ),
+                ]
+              ),
             ]),
             _vm._v(" "),
             _c("td", [_vm._v(" " + _vm._s(item.count_click) + " ")]),
@@ -67009,22 +67032,26 @@ var render = function () {
                 ? _c(
                     "button",
                     {
-                      staticClass: "button",
-                      attrs: { name: "hide" },
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", name: "hide" },
                       on: {
                         click: function ($event) {
                           return _vm.upLink(item.id, "hide")
                         },
                       },
                     },
-                    [_vm._v(" \n                    Лично\n                ")]
+                    [
+                      _vm._v(
+                        " \n                        Лично\n                    "
+                      ),
+                    ]
                   )
                 : item.private == 1
                 ? _c(
                     "button",
                     {
-                      staticClass: "button",
-                      attrs: { name: "show" },
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button", name: "show" },
                       on: {
                         click: function ($event) {
                           return _vm.upLink(item.id, "show")
@@ -67033,7 +67060,7 @@ var render = function () {
                     },
                     [
                       _vm._v(
-                        " \n                    Для всех \n                "
+                        " \n                        Для всех \n                    "
                       ),
                     ]
                   )
@@ -67044,21 +67071,26 @@ var render = function () {
               _c(
                 "button",
                 {
-                  staticClass: "button",
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
                   on: {
                     click: function ($event) {
                       return _vm.delLink(item.id)
                     },
                   },
                 },
-                [_vm._v(" \n                    Удалить \n                ")]
+                [
+                  _vm._v(
+                    " \n                        Удалить \n                    "
+                  ),
+                ]
               ),
             ]),
           ])
         }),
-      ],
-      2
-    ),
+        0
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -67066,16 +67098,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v(" Ид ")]),
-      _vm._v(" "),
-      _c("th", [_vm._v(" Ссылка ")]),
-      _vm._v(" "),
-      _c("th", [_vm._v(" Кликов ")]),
-      _vm._v(" "),
-      _c("th", [_vm._v(" Приватность ")]),
-      _vm._v(" "),
-      _c("th", [_vm._v(" Удалить ")]),
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v(" Ид ")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v(" Ссылка ")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v(" Кликов ")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v(" Приватность ")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v(" Удалить ")]),
+      ]),
     ])
   },
 ]

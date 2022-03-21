@@ -30,8 +30,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <ul class="navbar-nav ms-auto">
-                    <li class="">
-                        <a href="/links"> Список ссылок </a>
+                    <li class="nav-item">
+                        <a class="nav-link text-success" href="/links"> Список ссылок </a>
                     </li>
                 </ul>
                 
@@ -40,7 +40,7 @@
             </div>
         </nav>
 
-        <main class="py-4 container">
+        <main class="py-4 container ">
             @yield('content')
         </main>
     </div>

@@ -1,37 +1,49 @@
 <template>
     <div class="list-links">
-       <table>
-           <tr>
-               <th> Ид </th>
-               <th> Ссылка </th>
-               <th> Кликов </th>
-               <th> Приватность </th>
-               <th> Удалить </th>
-           </tr>
-           <tr v-for="item in arrayLinks"
-           :key="item.id">
-                <td> {{ item.id }} </td>
-                <td> <a :href="item.name_url"> {{item.name}} </a> </td>
-                <td> {{ item.count_click }} </td>
-                <td> <button v-if="item.private == 0"
-                            class="button" 
-                            name="hide"
-                            @click="upLink(item.id, 'hide')"> 
-                        Лично
-                    </button> 
-                    <button v-else-if="item.private == 1"
-                            class="button"
-                            name="show" 
-                            @click="upLink(item.id, 'show')"> 
-                        Для всех 
-                    </button> 
-                </td>
-                <td> <button class="button"
-                            @click="delLink(item.id)"> 
-                        Удалить 
-                    </button> 
-                </td>
-            </tr>
+       <table class="table">
+            <thead class="thead-dark">
+               <tr>
+                   <th scope="col"> Ид </th>
+                   <th scope="col"> Ссылка </th>
+                   <th scope="col"> Кликов </th>
+                   <th scope="col"> Приватность </th>
+                   <th scope="col"> Удалить </th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr v-for="item in arrayLinks"
+               :key="item.id">
+                    <td> {{ item.id }} </td>
+                    <td> 
+                       <a :href="item.name_url"
+                           class="text-decoration-none"> 
+                            {{item.name}} 
+                        </a> 
+                    </td>
+                    <td> {{ item.count_click }} </td>
+                    <td> <button v-if="item.private == 0"
+                                type="button" 
+                                class="btn btn-secondary"
+                                name="hide"
+                                @click="upLink(item.id, 'hide')"> 
+                            Лично
+                        </button> 
+                        <button v-else-if="item.private == 1"
+                                type="button"
+                                class="btn btn-primary"
+                                name="show" 
+                                @click="upLink(item.id, 'show')"> 
+                            Для всех 
+                        </button> 
+                    </td>
+                    <td> <button type="button"
+                                class="btn btn-danger"
+                                @click="delLink(item.id)"> 
+                            Удалить 
+                        </button> 
+                    </td>
+                </tr>
+            </tbody>
        </table>
     </div>
 </template>
